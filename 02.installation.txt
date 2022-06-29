@@ -1,0 +1,39 @@
+Quick  Start 
+============
+
+bisa pake Vue dengan atau tanpa build dulu
+
+
+1. Pake Build Tools
+
+Nah kalo pake ini bisa pake single file component (sfc)
+pake yg namanye Vite , 
+
+2. online
+bisa pake stackblitz 
+
+3. local
+
+syaratnya : 
+- bisa pake cli
+- bisa install node js
+
+
+caranya  :
+
+> npm init vue@latest
+
+cli ini bakal execute create-vue , official vue project
+scaffoding tool.
+
+cd <project name>
+npm install 
+npm run dev
+
+
+nah ada beberapa tips : 
+1. pake ide vscode + volar extension.
+
+nah kalo udah bisa production , pake kek gini
+
+> npm run build

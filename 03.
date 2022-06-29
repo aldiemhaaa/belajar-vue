@@ -1,0 +1,162 @@
+The application instance 
+========================
+
+setiap aplikasi vue itu dimulai dari bikin aplikasi 
+instance nya dengan keyword:
+createApp function : 
+
+import {createApp} from 'vue'
+
+const app = createApp({
+})
+
+The root component
+==================
+
+object yg di passing ke createApp itu sebuah komponent
+, semua app ini butuh yg namanya root komponent
+dan kalo pake SFC bisa import root komponen ini dari 
+file yg lain , contohnya  :
+
+import {createApp} from 'vue'
+import App from './App.vue'
+
+const app = createApp(App)
+
+
+=
+
+Nah semua didalam tutorial ini tuh pake single component
+jadi emg semua aplikasi disimpennya di satu tree nested 
+file , reusable component. contohnya, todo aplikasi
+component tree nya kek gini sistem foldernya ; 
+
+App ( root component )
+- TodoList
+    - TodoItem
+        - TodoDeleteButton
+        - TodoEditButton
+- TodoFooter
+    - TodoClearButton
+    - TodoStatistics
+
+
+nah kita bakal diksusi tentang cara definisiin sama multiple
+component jadi satu di sesi selanjutnya dari guide ini.
+tapi sebelum itu , kita akan fokus pada apa yang terjadi
+didalam single file component ini..
+
+
+Mounting the App
+
+aplikasi instance ini gaakan ngerender apapun sebelum
+di .mount() ini dipanggli.
+
+<div id="app"></div>
+app.mount('#app')
+
+
+nah konten dari root komponen ini bakal di render didalem
+element ini. nah si container element ini bukan part dari
+aplikasi.
+
+.mount() ini harus selalu dipanggil ketika semua applikasi
+, konfigurasi dan aset nya selesai di load. nah juga
+ini nge return value.
+
+
+didalem dom root compoennt template,
+
+
+konfigurasi app.
+================
+
+instance aplikasi ini butuh .config object buat memperbo-
+lehkan kita buat konfigurasi beberapa app-level options.
+contohnya ngedefinisiin app level error handler yg dimana
+bisa capture error dari all descendent component.
+
+app.config.errorHandler = (err) =>{
+    /*Handle error  */
+}
+
+instance aplikasi ini juga menyediakan beberapa method
+buat registtrasi scope aplikasi asset , contohnya
+register component
+
+
+app.component('TodoDeleteButton',TodoDeleteButton)
+
+nah ini ngebuat TodoDeleteButton bisa dipake dimanapun
+di dalam aplikasi kita. nah kita akan pelajarin
+registrasi komponen ini dan beberapa type asset di 
+sesi selanjutnya.
+
+
+kesimpulannya : 
+apply all app configuration sebelum di mounting aplikasinya
+
+
+Multiple Application Instances
+==============================
+nah kamu ini ga di limit buat bikin single application
+instance di satu halaman , si createApp ini
+ngebuat kamu bisa multiple vue application ke
+co -exist di dalam satu halaman. nah masing masingnya itu
+punya scope buat konfigurasi dan asset tersendiri
+
+
+contohnya : 
+
+const app1 = createApp({})
+
+app1.mount('#container-1')
+
+const app2 = createApp({})
+
+app2.mount('#container-2')
+
+nah kalo kamu pake Vue buat ningkatin server-rendered
+html dan hanya butuh vue buat kontrol bagian kecil
+dari semua halaman , hindarin yg namanya mounting 
+single vue application instance di semua aplikasi .
+Disarankan , bikin beberapa instance kecil dan di mount
+ke dalam beberapa element .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

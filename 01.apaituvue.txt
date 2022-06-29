@@ -1,0 +1,157 @@
+Vue ?
+
+- Vue ( dibaca nya vyu ) itu sebuah javascript framework
+buat bikin ui.
+- deklaratif & component base programming model
+- simpel dan efektif
+
+contoh nya kek ginii : 
+
+
+import { createApp } from 'vue'
+
+createApp({
+    data() {
+        return {
+            count:0
+        }
+    }
+}).mount('#app')
+
+
+######HTML
+
+<div id="app">
+    <button @click="count++">
+        Count is : {{ count }}
+    </button>
+</div>
+
+#####################
+Contoh diatas demonya itu dapet 2 core fitur : 
+1. Declarative rendering : Vue nge extend si html
+dengan tempalte syntaxnya yang bisa ngebuat kita untuk
+deklarasi in si output nya ini base on javascript state
+2. Reactivity : vue ini otomatis nge liat javascript
+nya kalo si state nya berubah , dan bakalan update
+DOM nya itu kalo misalkan ada yg berubah .
+
+#####################
+
+Syaratnya  : 
+- Familiar dengan html , css sama javascript
+
+
+===============================
+The progressive framework
+-------------------------
+
+- meng cover segala ekosistem dan kebutuhan yg ada 
+di front end development
+- di web ini kebutuhannya beragam , bisa aja nge scale
+dari segi form . nah si vue ini di rancang karna
+ke - flexible an nya dan cepet adaptasi. dan itu 
+berdasarkan project yg bakal kamu buat . 
+
+Vue ini bisa dipake apa aja sih ?
+
+- meningkatkan static html tanpa tahapan build
+- di sisipin sebagai web komponen di semua halaman web
+- SPA ( single page application )
+- full stack / server side rendering ( SSR )
+- jamstack / static site generation ( SSG )
+- target nya di desktop , mobile , webgl bahkan terminal
+
+nah jangan takut sama yg ditulis diatas , karna guide 
+buat pake fw ini tuh cuman butuh basic html dan javascript
+doang. dan cuman ikutin aja .
+
+
+===============================
+Single-File Components
+----------------------
+
+Single file component ini maksudnya bikin file vue
+langsung pake file ext namanya .vue , 
+nah si ini tuh ( sfc ) nge enkapsulasi component
+logic dari js , template html sama si style css 
+kedalam 1 file. nah contohnya kek dibawah ini
+
+<script>
+export default {
+    data() {
+        return {
+            count : 0
+        }
+    }
+}
+</script>
+
+<template>
+    <button @click="count++"> Count is : {{count}} </button>
+</template>
+
+<style scoped>
+button{
+    font-weight:bold;
+}
+</style>
+
+===============================
+API Styles
+----------
+vue component ini bisa dibagi jadi 2 style:
+- Options API
+
+ini dibikin object kek gitu contohnya
+
+<script>
+export default {
+    data(){
+        return{
+            count: 0
+        }
+    }
+
+    methods: {
+        increment(){
+            this.count++;
+        }
+    }
+
+    mounted(){
+        console.log('the initial count is : ${this.count}');
+
+    }
+}
+</script>
+
+
+- Composition API
+
+component logicnya dipakein API function, nah pake script
+setup , attribute ini tuh buat ngasih tau
+pake vue perform compile time
+
+contohnya kek gini
+<script setup>
+import {ref, onMounted} from 'vue'
+
+const count = ref(0)
+
+function increment(){
+    count.value++
+}
+
+onMounted(()=>{
+    
+});
+</script>
+
+Terus pilih yg mana nih style nya ? 
+dua duanya bisa dipake buat kebutuhan .
+
+
+
+
+

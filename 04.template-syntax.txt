@@ -1,0 +1,21 @@
+Template Syntax
+===============
+
+vue gunain html template buat deklaratif
+bind . semua template vue ini sintax nya
+valid html dan bisa diparsing dari spec
+compliant browser dan html parser.
+
+didalem itu semua , si vue ini nge compile
+templatenya kedalam javascript code yang
+sudah di optimisasi.
+
+
+
+Text Interpolation
+==================
+
+<span> Message : {{ msg }} </span>
+
+
+
