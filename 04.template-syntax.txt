@@ -19,3 +19,248 @@ Text Interpolation
 
 
 
+Raw HTML
+========
+
+double bracket ini tuh ngeluarin data 
+dalam bentuk plain text , bukan html.
+nah buat tampilin output html . butuh
+yg namanya v-html . contohnya : 
+
+<p> pake text interpolasi : {{ rawHtml }} </p>
+<p> pake direvtive v-html : 
+    <span v-html="rawHtml"></span>
+</p>
+
+nah kalo pake v-html ini harus tiati kalo pake
+v-html. pake sama konten yg oke gitu
+jangaan pake sama user-provider content.
+
+nah disini penggunaan v-html itu baru ya.
+ini namanya directive. directive ini tuh
+awalnya pake v- <- ini nandain buat vue 
+
+Attribute Bindings
+==================
+
+nah kalo {{}} ini gabisa dipake didalem
+html , pake ini nih , v-bind:
+
+<div v-bind:id="dynamicId"></div>
+
+v-bind ini tugas nya buat merintah si vue
+buat nyimpen element id ini.
+
+Shorthand
+=========
+
+nah berhubung si v-bind ini banyak banget
+yg pake , jadi dibikinin lah shorthand nya
+kek gini 
+<div :id="dynamicId"></div>
+
+attribute nya tuh pake : bikin beda
+dari html, tapi ini tuh valid kalo dipake
+dan support si vue .
+
+Boolean attributes
+==================
+
+boolean attribute ini tuh kek ngeindikasi
+bener ato salah suati nilai , berdasarkan
+si elementnya. contoh , disabled
+ini yg sering dipake buat boolean attribute
+
+v-bind ini kerjanaya kek dibawah ini : 
+
+<button :disabled="isButtonDisabled">Button
+</button>
+
+dynamically binding multiple attriibute
+=======================================
+
+data() {
+    return {
+        objectOfAttrs: {
+            id: 'container',
+            class : 'wrapper'
+        }
+    }
+}
+
+bisa di bind dalam satu element pake v-bind
+tanpa ada argumen pake kek gini : 
+
+<div v-vind="objectOfAttrs"></div>
+
+
+
+Using Javascript Expressions
+============================
+
+selama sejauh ini tuh kita nge bind simpel
+propery kedalam key template. tapi vue ini
+sebenernya OP ke javascript expression
+
+nah caranya kek gini : 
+
+{{ number + 1 }}
+{{ ok ? 'YES' : 'NO' }}
+{{ message.split('').reverse().join('') }}
+<div :id="`list-${id}`"></div>
+
+nah kodingan diatas bakal jadi javascript
+
+didalem vue template , javascript expression
+bisa dimasukin dalam beberapa posisi , di-
+antrarany : 
+
+- didalem text interpolasi ( dalam kurung {{}})
+- didalem attribute value semua directive vue
+  yg pake v-
+
+Expression Only
+===============
+
+setiap binding , hanya bisa dapet 1 single
+expression , 
+
+contoh yg ga bakal jalan 
+
+{{ var a = 1 }} <== ini tuh statement
+bukan expression
+
+{{ if(ok){ return message } }} <= flow
+controller kek gini gaakan jalan , kecuali
+pake ternary expression
+
+
+calling functions
+=================
+
+nah kalian bisa panggil fungsi didalem component
+si vue ini pake:
+
+<span :title="toTitleDate(date)">
+    {{ formatDate(date) }}
+</span>
+
+
+tips *
+
+fungsi di panggil didalem binding expression
+akan dipanggil terus setiap si component
+ke update , jadi dia ga punya side effect.
+
+
+
+Diretives
+=========
+
+directive ini adalah attribute spesial 
+yg dimulai dengan v- 
+vue menyediakan beberapa directive nya
+termasuk v-html dan v-bind .
+
+directive attribute ini expected to be single
+javascript expression
+v-for , v-on v-slot
+
+contoh perkondisian if : 
+
+<p v-if="seen">Now you see me </p>
+
+disini v-if directive bakal remove / insert
+tag p berdasarkan value dari seen 
+
+
+Arguments
+=========
+
+nah beberapa directive bisa pake argument
+denotasi nya v-bin nih , 
+
+<a v-on:click="doSomething"> ... </a>
+
+// short hand nya
+
+<a @click="doSomething"> ... </a>
+
+disini href itu argument , dimana ngasi tau
+si v-bind directive buat ngebind elmeent
+href attribute ke dalam value expression
+url . di short hand jadinya :
+
+contoh yg lain : 
+
+<a v-on:click="doSomething"> ... </a>
+
+short hand
+
+<a @click="doSomething"> ... </a>
+
+
+Dynamic Argument
+================
+
+na hini tuh bisa buat argument nya dynamic
+contohnya : 
+
+<a v-bind:[attributeName]="url"></a>
+
+short
+
+<a :[attributeName]="url"></a>
+
+
+nah si attributeName ini bakal dinamik 
+sesuai javascript expression. dan ini bakal 
+jadi final value dari si argument. contohnya
+
+jika component instance punya data property
+attributeName , dimana value nya itu href
+
+dan si binding ini bakal sama kek v-bind:href
+
+<a v-on:[eventName]="doSomething"></a>
+
+short hand
+
+<a @[eventName]="doSomething">
+
+
+
+Dynamic Argument Value Constaints
+=================================
+
+<a :['foo'+bar] = "value" > ... </a>
+
+
+Modifiers
+=========
+
+<form @submit.prevent="onSubmit"> ... </form>
+
+dan finally heres the full directive syntax
+
+v-on:submit.prevent="onSubmit"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
